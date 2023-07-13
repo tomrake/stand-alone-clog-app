@@ -3,7 +3,7 @@
   :author "Tom Rake<zzzap1967@gmail.com>"
   :license "MIT"
   :class :package-inferred-system  
-  :depends-on  ("clog")
+  :depends-on  ("config-clog" "clog")
   :components ((:file "main"))
   :defsystem-depends-on (:deploy)
   :build-operation "deploy-op"

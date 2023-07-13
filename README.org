@@ -103,3 +103,7 @@ unhandled condition in --disable-debugger mode, quitting
 - The browser startup may be hacky - try it without the browser startup code. This will divide the failure question.
 
 * Next trial
+Remove browser startup.
+Added :config-clog as depend.
+Test in slime.
+Need to request 127.0.0.1:8080 from the browser.

@@ -31,4 +31,4 @@
 (defun start ()
   "Start turtorial."
   (initialize 'on-new-window)
-  (open-browser))
+  #+nil(open-browser))
