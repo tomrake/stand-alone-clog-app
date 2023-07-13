@@ -1,0 +1,55 @@
+#+TITLE: The purpose of test-clog
+
+* Purpose
+This repo it to test deploying a clog app using the deploy library.
+
+
+* Round  Zero
+
+** Design
+main.lisp was derived from clog 15-tutorial code.
+
+The binary build was derived from the instructions at [[https://github.com/Shinmera/deploy]] How To section.
+
+** Summary
+The app will be built in my project root directory/boot
+
+** Steps
+
+*** Iniital running version under slime
+- (ql:quickload :config-clog)
+- (ql:quickload :test-clog)
+- (test-clog/main:start)
+
+This procedure opens a clog window and allows the video and audio to be played, as expected.
+*** Create deploy binary
+- (asdf:make :text-clog)
+This failed because of threads running.
+*** Make under rlwrap sbcl
+The following will run the app under rlwrap sbcl
+- (ql:quickload :config-clog)
+- (ql:quickload :test-clog)
+- (test-clog/main:start)
+*** Building then fails
+Next I tried to build with (asdf:make :test-clog) this again fails because of running threads
+*** Build with no run
+The following builds an app from a fresh running rlwrap sbcl instance.
+- (ql:quickload :config-clog)
+- (asdf:make :test-clog)
+
+This builds a running app which dispatches a page and then quits.
+
+*** Other fails
+This app build correct but failed.
+The following builds an app from a fresh running rlwrap sbcl instance.
+- (ql:quickload :config-clog)
+- (ql:quickload :test-clog)
+- (asdf:make :test-clog)
+
+In this case a browser is opened but the server side dies before the page is sent.
+
+** Observations/questions
+
+- Can a build with a :clog-config system required work?
+- Is a server interactive app run correctly?
+
