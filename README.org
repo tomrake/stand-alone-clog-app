@@ -32,24 +32,74 @@ The following will run the app under rlwrap sbcl
 - (test-clog/main:start)
 *** Building then fails
 Next I tried to build with (asdf:make :test-clog) this again fails because of running threads
-*** Build with no run
+*** Build and run
 The following builds an app from a fresh running rlwrap sbcl instance.
+- (ql:quickload :config-clog :test-clog)
+- (test-clog/main:start)
+
+This builds a runs and browser refreshes work.
+
+*** A build under rlwraap sbcl run but errors in execution
 - (ql:quickload :config-clog)
 - (asdf:make :test-clog)
+At this point sbcl exits.
+. bin/test-clog.exe
+This errors.
+#+begin_quote
+$ bin/test-clog.exe
+ ==> Performing warm boot.
+   -> Runtime directory is C:/Users/zzzap/Documents/Code/source-projects/ACTIVE/test-clog-deploy/bin/
+   -> Resource directory is C:/Users/zzzap/Documents/Code/source-projects/ACTIVE/test-clog-deploy/bin/
+ ==> Running boot hooks.
+ ==> Reloading foreign libraries.
+   -> Loading foreign library #<LIBRARY SQLITE3-LIB>.
+   -> Loading foreign library #<LIBRARY LIBSSL>.
+   -> Loading foreign library #<LIBRARY LIBCRYPTO>.
+ ==> Launching application.
+ ==> Epilogue.
+ ==> Running quit hooks.
+Hunchentoot server is started.
+Listening on 0.0.0.0:8080.
+HTTP listening on    : 0.0.0.0:8080
+HTML root            : C:/Users/zzzap/quicklisp/dists/quicklisp/software/clog-20221106-git/./static-files/
+Long poll first      : no
+Boot function added  : no
+Boot html source use : compiled version, when no file
+Boot js source use   : compiled version
+Boot file for path / : /boot.html
+Unable to open browser.
 
-This builds a running app which dispatches a page and then quits.
+Subprocess with command "explorer \"http://127.0.0.1:8080\""
+ exited with error code 1[2023-07-13 10:56:36 [ERROR]] Wake-for-shutdown connect failed: The condition Socket error in "connect": 10049 (The requested address is not valid in its context.) occurred with errno: 0.
+Unhandled SB-THREAD:JOIN-THREAD-ERROR in thread #<SB-THREAD:THREAD "clack-handler-hunchentoot" RUNNING
+                                                   {10033F91B3}>:
+  Joining thread failed: thread #<THREAD "hunchentoot-listener-0.0.0.0:8080" ABORTED
+                                   {1003D26113}> did not return normally.
 
-*** Other fails
-This app build correct but failed.
-The following builds an app from a fresh running rlwrap sbcl instance.
-- (ql:quickload :config-clog)
-- (ql:quickload :test-clog)
-- (asdf:make :test-clog)
+Backtrace for: #<SB-THREAD:THREAD "clack-handler-hunchentoot" RUNNING {10033F91B3}>
+0: (SB-DEBUG::DEBUGGER-DISABLED-HOOK #<SB-THREAD:JOIN-THREAD-ERROR {10040780E3}> #<unused argument> :QUIT NIL)
+1: ((LAMBDA (SB-THREAD::C SB-THREAD::H) :IN SB-THREAD::%EXIT-OTHER-THREADS) #<SB-THREAD:JOIN-THREAD-ERROR {10040780E3}> #<FUNCTION (LAMBDA (SB-THREAD::C SB-THREAD::H) :IN SB-THREAD::%EXIT-OTHER-THREADS) {2218882B}>)
+2: (SB-DEBUG::RUN-HOOK *INVOKE-DEBUGGER-HOOK* #<SB-THREAD:JOIN-THREAD-ERROR {10040780E3}>)
+3: (INVOKE-DEBUGGER #<SB-THREAD:JOIN-THREAD-ERROR {10040780E3}>)
+4: (ERROR SB-THREAD:JOIN-THREAD-ERROR :THREAD #<SB-THREAD:THREAD "hunchentoot-listener-0.0.0.0:8080" ABORTED {1003D26113}> :PROBLEM :ABORT)
+5: (SB-THREAD:JOIN-THREAD #<SB-THREAD:THREAD "hunchentoot-listener-0.0.0.0:8080" ABORTED {1003D26113}> :DEFAULT NIL :TIMEOUT NIL)
+6: ((:METHOD HUNCHENTOOT:SHUTDOWN (HUNCHENTOOT:ONE-THREAD-PER-CONNECTION-TASKMASTER)) #<HUNCHENTOOT:ONE-THREAD-PER-CONNECTION-TASKMASTER {10038967B3}>) [fast-method]
+7: ((:METHOD HUNCHENTOOT:STOP (HUNCHENTOOT:ACCEPTOR)) #<CLACK.HANDLER.HUNCHENTOOT::CLACK-ACCEPTOR (host 0.0.0.0, port 8080)> :SOFT NIL) [fast-method]
+8: ((FLET "CLEANUP-FUN-3" :IN CLACK.HANDLER.HUNCHENTOOT:RUN)) [cleanup]
+9: (CLACK.HANDLER.HUNCHENTOOT:RUN #<FUNCTION (LAMBDA (LACK.MIDDLEWARE.BACKTRACE::ENV) :IN "C:/Users/zzzap/quicklisp/dists/quicklisp/software/lack-20221106-git/src/middleware/backtrace.lisp") {1002787B9B}> :ALLOW-OTHER-KEYS T :ADDRESS "0.0.0.0" :PORT 8080 :DEBUG T :USE-THREAD T :ADDRESS "0.0.0.0")
+10: ((LAMBDA NIL :IN BORDEAUX-THREADS::BINDING-DEFAULT-SPECIALS))
+11: ((FLET SB-UNIX::BODY :IN SB-THREAD::RUN))
+12: ((FLET "WITHOUT-INTERRUPTS-BODY-138" :IN SB-THREAD::RUN))
+13: ((FLET SB-UNIX::BODY :IN SB-THREAD::RUN))
+14: ((FLET "WITHOUT-INTERRUPTS-BODY-131" :IN SB-THREAD::RUN))
+15: (SB-THREAD::RUN)
+16: ("foreign function: #x14003E385")
+17: ("foreign function: #x14000728A")
 
-In this case a browser is opened but the server side dies before the page is sent.
-
+unhandled condition in --disable-debugger mode, quitting
+#+end_quote
 ** Observations/questions
 
-- Can a build with a :clog-config system required work?
-- Is a server interactive app run correctly?
+- The browser startup may be hacky - try it without the browser startup code. This will divide the failure question.
 
+* Next trial
