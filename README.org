@@ -107,3 +107,36 @@ Remove browser startup.
 Added :config-clog as depend.
 Test in slime.
 Need to request 127.0.0.1:8080 from the browser.
+
+Testing during deploy.
+quit slime because it is serving requests.
+- Browser refresh can't find server.
+
+* Debug
+ENSURE NO slime version of the app in running.
+That is after the binary build. Quit slime.
+
+Once I did this all binary launches would fail.
+
+* Research
+
+- [[https://lispcookbook.github.io/cl-cookbook/scripting.html#with-sbcl---images-and-executables]]
+  Broader discussion about binary deployment in lisp.
+- [[https://github.com/rabbibotton/clog/blob/main/source/clog-system.lisp]]
+  The CLOG code for client server update link.
+- [[https://github.com/Shinmera/deploy]]
+  The deploy README.
+
+
+* Possible Failure Scenerios
+
+- The deploy binary closes the SBCL  process to quickly
+  - rlwrap keeps the sbcl process alive and thus it handles requests
+  - emacs slime keeps the process alive too.
+
+** Test early quit scenerio
+- Once the browser is open go into a (sleep 10) loop
+  - This works under slime.
+    - The web handler is still running.
+  - Works under rlwrap
+    - The web handler still runs 

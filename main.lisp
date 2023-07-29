@@ -31,4 +31,5 @@
 (defun start ()
   "Start turtorial."
   (initialize 'on-new-window)
-  #+nil(open-browser))
+  (open-browser)
+  (loop (sleep 10)))
