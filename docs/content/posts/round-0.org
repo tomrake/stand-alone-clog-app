@@ -1,6 +1,5 @@
 #+TITLE: Initial Log
 #+DATE: 2023-07-28T23:02:56-04:00
-#+DRAFT: true
 My initial README log for this project:
 
 * Purpose
