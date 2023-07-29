@@ -2,13 +2,13 @@
 #+DESCRIPTION: "About this project"
 #+LAYOUT: "about"
 * The Purpose
+This is a Common lisp project to build stand alone apps that include [[https://github.com/rabbibotton/clog][CLOG]].
+My focus is on Windows and I largely use SBCL.
 
-I intend to clone this project to document and blog about code.
+This project went through a few hours to find example [[https://github.com/rabbibotton/clog][CLOG]] code and build an app that worked  under emacs and slime.
+The next part was to understand and use the system [[https://github.com/Shinmera/deploy][deploy]] to build a binary.
+The next phase was to debug the binary to build a working binary.
 
-* My theme
+This process was more complex than it first seemed.
 
-I use a modified clone of the m10c theme which is the [[https://github.com/tomrake/hugo-theme-m10c-twr][m10c-twr]] theme.
-I have added additional social icons for reddit, github, and mastodon.
-See [[https://tomrake.github.io/hugo-theme-m10c-twr/]] for how I added addition feather icons.
-
-
+The principle motivation for this site  is to disclose the detailed tricks I used.
