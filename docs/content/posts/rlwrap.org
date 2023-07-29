@@ -1,0 +1,7 @@
+#+TITLE: Rlwrap
+#+DATE: 2023-07-29T17:02:53-04:00
+
+rlwrap is a program that runs an inferior program with gnu readline on the keyboard input.
+This allows backspace editing.
+
+I used this description from  [[https://leanpub.com/lovinglisp/read#leanpub-auto-making-the-repl-nicer-using-rlwrap][Loving Common Lisp]] to run sbcl in an less tedious way.
