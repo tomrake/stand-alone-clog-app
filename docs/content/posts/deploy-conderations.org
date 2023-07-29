@@ -1,5 +1,7 @@
 #+TITLE: Deploy Conderations
 #+DATE: 2023-07-29T17:02:35-04:00
+#+WEIGHT: 30
+
 The deploy code is directly from deploy README.
 
 #+begin_src lisp
@@ -14,4 +16,11 @@ The deploy code is directly from deploy README.
   :build-operation "deploy-op"
   :build-pathname "test-clog"
   :entry-point "test-clog/main:start")
+#+end_src
+
+To build the system in a refesh isolated lisp instance execuote this:
+
+#+begin_src lisp
+  (ql:quickload :test-clog)
+  (asdf:make :my-system)
 #+end_src

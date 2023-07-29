@@ -1,5 +1,6 @@
 #+TITLE: Threads Considered
 #+DATE: 2023-07-29T17:03:19-04:00
+#+WEIGHT: 40
 * Threads of execution
 
 ** Under emacs/slime
@@ -8,9 +9,9 @@ SBCL when run under slime, is run as an inferrior lisp,
 which means it is controled by emacs.
 Emacs uses thread to syncronize the REPL and the running lisp process.
 
-slime keeps the lisp process running so if that process creates threads to anwser net work events those event will be answered.
+Slime keeps the lisp process running so if that process creates threads to anwser net work events those events will be answered.
 
-** CLOG
+**  CLOG
 CLOG uses thread to syncronize the clog lisp model with that of the user interface on the browser.
 
 ** deploy
@@ -18,7 +19,7 @@ It is best to run deploy from ASDF if multiple threads are runing in lisp image 
 
 * Testing plan
 - Develop the app under emacs/slime and get the correct behaviour.
-- Test the same behaviour under a stand alone lisp - I run one under rlwrap.
+- Test the same behaviour under a stand-alone lisp - I run one under rlwrap.
 - Build the app under a stand alown lisp and create the binary.
 - Test the binary - be sure no app instance is still serving content from emacs/slime
   - You want to have the built binary server the content.

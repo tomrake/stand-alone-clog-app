@@ -1,3 +1,7 @@
 #+TITLE: Clog Tutorial Example
 #+DATE: 2023-07-29T16:52:37-04:00
-#+DRAFT: true
+#+WEIGHT: 20
+I choose the clog  tutorial-15 code as an example because I was interested  in serving multimedia files.
+
+The code only needed slight editing to serve the function I desired.
+And I quickly had a running version working under emacs/slime.

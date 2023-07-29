@@ -1,5 +1,6 @@
 #+TITLE: Rlwrap
 #+DATE: 2023-07-29T17:02:53-04:00
+#+WEIGHT: 50
 
 rlwrap is a program that runs an inferior program with gnu readline on the keyboard input.
 This allows backspace editing.

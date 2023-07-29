@@ -1,7 +1,8 @@
 #+TITLE: Slime v Standalone Lisp
 #+DATE: 2023-07-29T17:28:23-04:00
+#+WEIGHT: 60
 As a mentioned before slime keeps the lisp process running.
-But what does the stand alone binary do, it simple quits and cleans up the lisp threads.
+But what does the stand-alone binary do, its simply quits and cleans up the lisp threads.
 
 The tutorial code I copied starts the browser defines the handlers and then quits.
 I need to have code stay alive to host the handlers.
@@ -10,3 +11,5 @@ How this should be done is now a consideration
 
 - The quick and dirty sleep loop seems to work.
 - A condition system restartable looping could also work.
+- In may be possible to wrap the starup routine in a restartable system.
+  - alternatively there could be a stand-alone-startup.

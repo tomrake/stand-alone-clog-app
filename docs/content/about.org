@@ -10,5 +10,10 @@ The next part was to understand and use the system [[https://github.com/Shinmera
 The next phase was to debug the binary to build a working binary.
 
 This process was more complex than it first seemed.
+Deploy required that the binary project be made in a isolated lisp instance, that is a liso not running under slime.
+Once the binary is correctly built it must be tested without the slime instance of the project not handling requests,
+this required exiting slime.
+Finally the CLOG examples are typlically run under slime, which let the CLOG web server still running.
+The binary however quits once the starup code is finished.
 
 The principle motivation for this site  is to disclose the detailed tricks I used.
